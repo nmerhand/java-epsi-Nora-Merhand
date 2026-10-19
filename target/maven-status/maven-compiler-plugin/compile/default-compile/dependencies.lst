@@ -1,0 +1,12 @@
+classpath:C:\Users\nmerh\.m2\repository\org\mariadb\jdbc\mariadb-java-client\3.5.10\mariadb-java-client-3.5.10.jar	791739:1792402122513
+classpath:C:\Users\nmerh\.m2\repository\com\zaxxer\HikariCP\7.1.0\HikariCP-7.1.0.jar	172996:1792402121631
+classpath:C:\Users\nmerh\.m2\repository\org\slf4j\slf4j-api\2.0.20\slf4j-api-2.0.20.jar	70255:1792402121414
+classpath:C:\Users\nmerh\.m2\repository\ch\qos\logback\logback-classic\1.6.4\logback-classic-1.6.4.jar	291545:1792402121543
+classpath:C:\Users\nmerh\.m2\repository\ch\qos\logback\logback-core\1.6.4\logback-core-1.6.4.jar	650933:1792402121347
+classpath:C:\Users\nmerh\.m2\repository\org\hibernate\orm\hibernate-core\7.4.11.Final\hibernate-core-7.4.11.Final.jar	15334409:1792402123353
+classpath:C:\Users\nmerh\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.2.0\jakarta.persistence-api-3.2.0.jar	195939:1792402121861
+classpath:C:\Users\nmerh\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.1\jakarta.transaction-api-2.0.1.jar	28607:1772468603409
+classpath:C:\Users\nmerh\.m2\repository\org\hibernate\orm\hibernate-hikaricp\7.4.11.Final\hibernate-hikaricp-7.4.11.Final.jar	13070:1792402121395
+classpath:C:\Users\nmerh\.m2\repository\org\flywaydb\flyway-core\13.8.1\flyway-core-13.8.1.jar	812247:1792402120906
+classpath:C:\Users\nmerh\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.22\jackson-annotations-2.22.jar	84211:1792402122013
+classpath:C:\Users\nmerh\.m2\repository\org\flywaydb\flyway-mysql\13.8.1\flyway-mysql-13.8.1.jar	31722:1792402121449
