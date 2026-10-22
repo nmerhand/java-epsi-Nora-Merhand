@@ -1,6 +1,8 @@
 package org.sebsy.compta.app;
 
+import org.sebsy.compta.dao.BonDAO;
 import org.sebsy.compta.dao.FournisseurDAO;
+import org.sebsy.compta.dao.jdbc.BonDaoJdbc;
 import org.sebsy.compta.dao.jdbc.FournisseurDaoJdbc;
 import org.sebsy.compta.domain.Fournisseur;
 
@@ -15,5 +17,7 @@ public class Brouillon {
         // Fournisseur fournisseur = new Fournisseur("Peinture Express 2", ville("Nantes"));
         // System.out.println(dao.create(fournisseur));
 
+        BonDAO daoBon = new BonDaoJdbc();
+        System.out.println(daoBon.FindDelaiByIdBon(7));
     }
 }

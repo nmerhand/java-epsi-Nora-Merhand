@@ -1,33 +1,28 @@
 package org.sebsy.compta.app;
 
-import org.sebsy.compta.dao.FournisseurDAO;
-import org.sebsy.compta.dao.jdbc.FournisseurDaoJdbc;
-import org.sebsy.compta.domain.Adresse;
-import org.sebsy.compta.domain.Fournisseur;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.sebsy.compta.infra.Db;
 
 import java.sql.*;
-
-import static org.sebsy.compta.domain.Adresse.ville;
 
 public class PremierContact {
 
     public static void main(String[] args) throws Exception {
 
-        FournisseurDAO dao = new FournisseurDaoJdbc();
-        System.out.println(dao.findAll());
-        System.out.println(dao.findById(2L));
-        System.out.println(dao.findById(999L));
-        System.out.println(dao.findByNom("Dubois & Fils"));
-        System.out.println(dao.findByNom("RDS"));
-        System.out.println(dao.findByVille("Nantes"));
-        System.out.println(dao.findByVille("Rennes"));
-        Fournisseur fournisseur = new Fournisseur("Peinture Express", ville("Nantes"));
-        Fournisseur newF = dao.create(fournisseur);
-        System.out.println(newF);
-        System.out.println(dao.rename(newF.getId(), "Peinture Express 2"));
-        System.out.println(dao.rename(999L, "Peinture Express 3"));
-        System.out.println(dao.delete(newF.getId()));
+        try(Connection cnx = Db.dataSource().getConnection()) {
+            Statement st = cnx.createStatement();
+            ResultSet rs1 = st.executeQuery("SELECT count(*) FROM fournisseur");
+
+            System.out.println(cnx.getClass().getName());
+            rs1.next();
+            System.out.println("Nombre de fournisseurs : " + rs1.getInt(1));
+
+            ResultSet rs2 = st.executeQuery("SELECT * FROM fournisseur ORDER BY fournisseur.nom");
+
+            while (rs2.next()) {
+                System.out.println("Fournisseur n°" + rs2.getInt("id") + " : " + rs2.getString("nom") + " à " + rs2.getString("ville"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
