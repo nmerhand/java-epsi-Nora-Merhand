@@ -1,5 +1,6 @@
 package org.sebsy.compta.app;
 
+import org.sebsy.compta.infra.Db;
 import org.sebsy.compta.infra.Env;
 
 import java.sql.*;
@@ -7,10 +8,7 @@ import java.sql.*;
 public class PremierContact {
 
     public static void main(String[] args) {
-        try(Connection cnx = DriverManager.getConnection(
-                Env.required("DB_URL"),
-                Env.required("DB_USER"),
-                Env.required("DB_PWD"))) {
+        try(Connection cnx = Db.dataSource().getConnection()) {
         Statement st = cnx.createStatement();
         ResultSet rs1 = st.executeQuery("SELECT count(*) FROM fournisseur");
 
