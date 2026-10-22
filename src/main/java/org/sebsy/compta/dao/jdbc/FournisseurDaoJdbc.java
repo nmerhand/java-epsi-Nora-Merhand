@@ -115,7 +115,7 @@ public class FournisseurDaoJdbc implements FournisseurDAO {
     public Fournisseur create(Fournisseur f) throws Exception {
 
         try (Connection cnx = Db.dataSource().getConnection();
-             PreparedStatement ps = cnx.prepareStatement(SQL_CREATE,  Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement ps = cnx.prepareStatement(SQL_CREATE)) {
 
             ps.setString(1, f.getNom());
             ps.setString(2, f.getAdresse().rue());
@@ -126,8 +126,7 @@ public class FournisseurDaoJdbc implements FournisseurDAO {
             try (ResultSet rs = ps.getGeneratedKeys()) {
                 rs.next();
                 Long id = rs.getLong(1);
-                Fournisseur fournisseur = new Fournisseur(id, f.getNom(), f.getAdresse());
-                return  fournisseur;
+                return new Fournisseur(id, f.getNom(), f.getAdresse());
             }
         }
     }
