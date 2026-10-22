@@ -23,8 +23,11 @@ public class PremierContact {
         System.out.println(dao.findByNom("RDS"));
         System.out.println(dao.findByVille("Nantes"));
         System.out.println(dao.findByVille("Rennes"));
-        // Fournisseur fournisseur = new Fournisseur("Peinture Express", ville("Nantes"));
-        // System.out.println(dao.create(fournisseur));
-
+        Fournisseur fournisseur = new Fournisseur("Peinture Express", ville("Nantes"));
+        Fournisseur newF = dao.create(fournisseur);
+        System.out.println(newF);
+        System.out.println(dao.rename(newF.getId(), "Peinture Express 2"));
+        System.out.println(dao.rename(999L, "Peinture Express 3"));
+        System.out.println(dao.delete(newF.getId()));
     }
 }

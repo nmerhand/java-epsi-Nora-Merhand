@@ -12,4 +12,6 @@ public interface FournisseurDAO {
     Optional<Fournisseur> findByNom(String nom) throws Exception;
     Optional<Fournisseur> findByVille(String ville) throws Exception;
     Fournisseur create(Fournisseur f) throws Exception;
+    Boolean rename(Long id, String nom) throws Exception;
+    Boolean delete(Long id) throws Exception;
 }

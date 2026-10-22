@@ -11,9 +11,9 @@ public class Brouillon {
 
     public static void main(String[] args) throws Exception {
 
-        FournisseurDAO dao = new FournisseurDaoJdbc();
-        Fournisseur fournisseur = new Fournisseur("Peinture Express 2", ville("Nantes"));
-        System.out.println(dao.create(fournisseur));
+        // FournisseurDAO dao = new FournisseurDaoJdbc();
+        // Fournisseur fournisseur = new Fournisseur("Peinture Express 2", ville("Nantes"));
+        // System.out.println(dao.create(fournisseur));
 
     }
 }

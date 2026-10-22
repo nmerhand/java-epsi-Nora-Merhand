@@ -17,6 +17,8 @@ public class FournisseurDaoJdbc implements FournisseurDAO {
     private static final String SQL_FIND_BY_NOM = "SELECT * FROM compta.fournisseur WHERE nom = ?";
     private static final String SQL_FIND_BY_VILLE = "SELECT * FROM compta.fournisseur WHERE ville = ?";
     private static final String SQL_CREATE = "INSERT INTO compta.fournisseur (nom, rue, code_postal, ville) VALUES (?, ?, ?, ?)";
+    private static final String SQL_RENAME = "UPDATE compta.fournisseur SET nom = ? WHERE id = ?";
+    private static final String SQL_DELETE = "DELETE FROM compta.fournisseur WHERE id = ?";
 
     @Override
     public List<Fournisseur> findAll() throws SQLException {
@@ -115,7 +117,7 @@ public class FournisseurDaoJdbc implements FournisseurDAO {
     public Fournisseur create(Fournisseur f) throws Exception {
 
         try (Connection cnx = Db.dataSource().getConnection();
-             PreparedStatement ps = cnx.prepareStatement(SQL_CREATE)) {
+             PreparedStatement ps = cnx.prepareStatement(SQL_CREATE,  Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, f.getNom());
             ps.setString(2, f.getAdresse().rue());
@@ -128,6 +130,27 @@ public class FournisseurDaoJdbc implements FournisseurDAO {
                 Long id = rs.getLong(1);
                 return new Fournisseur(id, f.getNom(), f.getAdresse());
             }
+        }
+    }
+
+    @Override
+    public Boolean rename(Long id, String nom) throws Exception {
+        try (Connection cnx = Db.dataSource().getConnection();
+             PreparedStatement ps = cnx.prepareStatement(SQL_RENAME)) {
+
+            ps.setString(1, nom);
+            ps.setLong(2, id);
+            return ps.executeUpdate() > 0 ;
+        }
+    }
+
+    @Override
+    public Boolean delete(Long id) throws Exception {
+        try (Connection cnx = Db.dataSource().getConnection();
+             PreparedStatement ps = cnx.prepareStatement(SQL_DELETE)) {
+
+            ps.setLong(1, id);
+            return ps.executeUpdate() > 0 ;
         }
     }
 
