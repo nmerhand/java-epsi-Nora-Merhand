@@ -2,6 +2,7 @@ package org.sebsy.compta.app;
 
 import jakarta.persistence.EntityManager;
 import org.hibernate.SessionFactory;
+import org.sebsy.compta.domain.ArticleCourt;
 import org.sebsy.compta.domain.Fournisseur;
 import org.sebsy.compta.infra.Jpa;
 
@@ -14,6 +15,11 @@ public class DemarrageJpa {
             );
             System.out.println(fournisseur4);
             System.out.println(fournisseur4.getAdresse().estComplete());
+
+            ArticleCourt articleCourt = sessionFactory.callInTransaction(
+                    em -> em.find(ArticleCourt.class, 1L)
+            );
+            System.out.println(articleCourt);
         }
     }
 }
