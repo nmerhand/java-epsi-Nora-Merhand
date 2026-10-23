@@ -3,7 +3,6 @@ package org.sebsy.compta.infra;
 import org.hibernate.SessionFactory;
 import org.hibernate.jpa.HibernatePersistenceConfiguration;
 import org.hibernate.tool.schema.Action;
-import org.sebsy.compta.domain.ArticleCourt;
 import org.sebsy.compta.domain.Fournisseur;
 
 public class Jpa {
@@ -29,12 +28,12 @@ public class Jpa {
 
     private static SessionFactory build() {
         return new HibernatePersistenceConfiguration("compta")
-            .managedClasses(Fournisseur.class, ArticleCourt.class)
+            .managedClasses(Fournisseur.class)
             .jdbcUrl(Env.required("DB_URL"))
             .jdbcUsername(Env.required("DB_USER"))
             .jdbcPassword(Env.required("DB_PWD"))
             .jdbcPoolSize(10)
-            .schemaToolingAction(Action.VALIDATE)
+            .schemaToolingAction(Action.UPDATE)
             .property("hibernate.generate_statistics", true)
             .createEntityManagerFactory();
     }
