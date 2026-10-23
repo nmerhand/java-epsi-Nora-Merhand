@@ -33,7 +33,7 @@ public class Jpa {
             .jdbcUsername(Env.required("DB_USER"))
             .jdbcPassword(Env.required("DB_PWD"))
             .jdbcPoolSize(10)
-            .schemaToolingAction(Action.UPDATE)
+            .schemaToolingAction(Action.VALIDATE)
             .property("hibernate.generate_statistics", true)
             .createEntityManagerFactory();
     }
