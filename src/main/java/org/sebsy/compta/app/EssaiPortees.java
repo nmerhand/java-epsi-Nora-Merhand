@@ -20,6 +20,7 @@ public class EssaiPortees {
                 Fournisseur b = em.find(Fournisseur.class, 1L);
                 em.getTransaction().commit();
                 System.out.println("10. a == b : " + (a == b));
+                System.out.println("10. requêtes : " + stats.getPrepareStatementCount());
             }
 
             stats.clear();
