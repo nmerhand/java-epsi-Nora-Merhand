@@ -12,14 +12,14 @@ public class Jpa {
 
     }
 
-    public static synchronized SessionFactory factory() {
+    public static SessionFactory factory() {
         if (factory == null || factory.isClosed()) {
             factory = build();
         }
         return factory;
     }
 
-    public static synchronized void close() {
+    public static void close() {
         if (factory != null && factory.isOpen()) {
             factory.close();
         }
@@ -31,7 +31,7 @@ public class Jpa {
             .managedClasses(Fournisseur.class)
             .jdbcUrl(Env.required("DB_URL"))
             .jdbcUsername(Env.required("DB_USER"))
-            .jdbcPassword(Env.required("DB_PASSWORD"))
+            .jdbcPassword(Env.required("DB_PWD"))
             .jdbcPoolSize(10)
             .schemaToolingAction(Action.VALIDATE)
             .property("hibernate.generate_statistics", true)

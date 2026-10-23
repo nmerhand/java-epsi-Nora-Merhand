@@ -11,7 +11,7 @@ public class AppJpa31 {
         try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("compta-pu");
             EntityManager em = emf.createEntityManager()) {
             Fournisseur fournisseur = em.find(Fournisseur.class, 1);
-            System.out.println(emf);
+            System.out.println(fournisseur);
         }
     }
 }
