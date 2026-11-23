@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.jpa.HibernatePersistenceConfiguration;
 import org.hibernate.tool.schema.Action;
 import org.sebsy.compta.domain.Article;
+import org.sebsy.compta.domain.Bon;
 import org.sebsy.compta.domain.Fournisseur;
 
 public class Jpa {
@@ -31,6 +32,7 @@ public class Jpa {
         return new HibernatePersistenceConfiguration("compta")
             .managedClasses(Fournisseur.class)
             .managedClass(Article.class)
+            .managedClass(Bon.class)
             .jdbcUrl(Env.required("DB_URL"))
             .jdbcUsername(Env.required("DB_USER"))
             .jdbcPassword(Env.required("DB_PWD"))
