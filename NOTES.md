@@ -1,4 +1,4 @@
-# Questions TP01
+# QUESTIONS TP01
   
 > Ouvrez le pom.xml. Combien de dépendances concernent JDBC ? Combien concernent l'API JDBC (java.sql) ?  
   
@@ -10,7 +10,7 @@
 Db 
 => Hikari
 
-# Questions TP02
+# QUESTIONS TP02
 
 > Quel constructeur sert à un fournisseur **pas encore enregistré**, et pourquoi son identifiant est-il un `Long` et non un `long` ?
 
@@ -46,7 +46,7 @@ En renvoyant Optional[0] on pourrait croire que le contenu du champ est 0 alors 
 
 => 5
 
-# Questions TP03
+# QUESTIONS TP05
 
 > Quel type déclare `createEntityManagerFactory()` ? Quelle dépendance apporte le paquet `jakarta.persistence` ? Lancez `mvn dependency:tree -Dincludes=jakarta.persistence` et recopiez les lignes utiles.
 
@@ -150,8 +150,40 @@ La colonne ville aurait été modifiée
 
 > Comptez les requêtes par `factory().getStatistics().getPrepareStatementCount()`, après un `clear()` des statistiques.
 
-![[Pasted image 20261023114221.png]]
+![[Pasted image 20261023120136.png]]
 
 >Concluez en deux phrases : qu'est-ce que le contexte de persistance, et combien de temps vit-il ici ?
 
 Il vit jusqu'à un close().
+
+# QUESTIONS TP06
+
+> Recopiez le message que renvoie MariaDB. Pourquoi `validate` a-t-il accepté une entité qu'on ne peut pas insérer ?
+
+
+```zsh
+Exception in thread "main" org.hibernate.exception.ConstraintViolationException: could not execute statement [(conn=2044) Field 'id_fou' doesn't have a default value] [insert into article (actif,designation,prix,ref) values (?,?,?,?)]
+```
+
+-> Parce que le constructeur est bon, c'est la relation entre Article et Fournisseur qui n'est pas instaurée 
+
+> Passez `delai` en `int`, relancez, recopiez le message. Quel bon le provoque, et pourquoi ? Revenez à `Integer`.
+
+```zsh
+Exception in thread "main" org.hibernate.PropertyAccessException: Null value was assigned to a property [class org.sebsy.compta.domain.Bon.delai] of primitive type: 'org.sebsy.compta.domain.Bon.delai' (setter)
+```
+
+Le bon qui provoque ce message d'erreur est celui dont le `délai = null`.
+Il le provoque car `int` n'accepte pas les `null`. 
+
+> Passez `statut` en `EnumType.ORDINAL`, relancez, recopiez la ligne `Schema validation`
+
+```
+ Schema validation: wrong column type encountered in column [statut] in table [bon]; found [varchar (Types#VARCHAR)], but expecting [tinyint (Types#TINYINT)]
+```
+
+> En deux phrases : pourquoi `Adresse` est-elle un objet-valeur et pas une entité ? Citez une autre donnée du domaine `compta` qui mériterait un `@Embeddable`, et dites pourquoi.
+
+`Adresse` ne fait pas référence à une table directement mais à des champs.
+`PrixTtc` mériterait un `@Embeddable` pour pouvoir gérer cela plus facilement.
+
