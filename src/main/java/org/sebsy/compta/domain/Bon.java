@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 import org.sebsy.compta.domain.Statut;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "bon")
@@ -68,5 +69,16 @@ public class Bon {
 
     public void setStatut(Statut statut) {
         this.statut = statut;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Bon bon)) return false;
+        return numero == bon.numero && Objects.equals(id, bon.id) && Objects.equals(dateCommande, bon.dateCommande) && Objects.equals(delai, bon.delai) && statut == bon.statut;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, numero, dateCommande, delai, statut);
     }
 }
